@@ -20,7 +20,6 @@ saya adalah mahasiswa Universitas Sebelas Maret prodi fisika angkatan 2020
 
 saya sangat suka belajar pemrograman komputer
 
-saya sudah belajar matlab, HTML, CSS
 
 <p align="left">
 <a href="https://github.com/InagenaRA">
