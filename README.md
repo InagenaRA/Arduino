@@ -16,7 +16,7 @@ Here are some ideas to get you started:
 -->
 halo perkenalkan nama saya Inagena Riski Andarista
 
-saya adalah mahasiswa Universitas Sebelas Maret prodi fisika angkatan 2020
+saya adalah mahasiswa prodi fisika Universitas Sebelas Maret angkatan 2020
 
 saya sangat suka belajar pemrograman komputer
 
