@@ -1,0 +1,23 @@
+const int ledPin = 13;          // Pin untuk LED
+const int sensorPin = 12;
+int jarak = 0;             // Variabel untuk menyimpan nilai input dari sensor
+
+void setup() {
+  pinMode(ledPin, OUTPUT);      // Set LED sebagai output
+  pinMode(sensorPin, INPUT);
+  Serial.begin(9600);           // Mulai komunikasi serial
+}
+
+void loop() {
+  jarak = digitalRead(sensorPin);  // Baca nilai dari sensor suara
+  Serial.print("jarak: ");
+  Serial.println(jarak);               // Tampilkan nilai di Serial Monitor
+  
+  if (jarak == HIGH) {             // Jika suara melebihi ambang batas
+    digitalWrite(ledPin, HIGH);             // Nyalakan LED
+  } else {
+    digitalWrite(ledPin, LOW);              // Matikan LED
+  }
+
+  delay(100);  // Tunda sebentar untuk menghindari pembacaan terlalu cepat
+}
