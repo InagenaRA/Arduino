@@ -1,0 +1,24 @@
+const int sensorPin = A0;  // Pin analog untuk pembacaan NTC
+const float resistorNominal = 10000;  // Resistor tetap (misalnya 10kΩ)
+const float beta = 3950;              // Beta coefficient untuk NTC (lihat datasheet NTC)
+const float roomTemp = 298.15;        // Suhu kamar dalam Kelvin (25°C = 298.15K)
+const float nominalTemp = 25.0;       // Suhu nominal NTC pada 25°C
+
+void setup() {
+  Serial.begin(9600);   // Memulai komunikasi serial
+}
+
+void loop() {
+  int adcValue = analogRead(sensorPin);  // Baca nilai dari sensor NTC
+  float resistance = resistorNominal * (1023.0 / adcValue - 1);  // Hitung resistansi NTC
+
+  // Rumus untuk menghitung suhu dalam Kelvin berdasarkan nilai resistansi
+  float temperatureK = 1.0 / (1.0 / roomTemp + log(resistance / resistorNominal) / beta);
+  float temperatureC = temperatureK - 273.15;  // Konversi dari Kelvin ke Celcius
+
+  Serial.print("Temperature: ");
+  Serial.print(temperatureC);
+  Serial.println(" C");
+
+  delay(1000);  // Tunggu 1 detik sebelum pembacaan berikutnya
+}
