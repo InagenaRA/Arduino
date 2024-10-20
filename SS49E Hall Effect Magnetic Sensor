@@ -1,0 +1,26 @@
+// Pin untuk sensor Hall Effect SS49E
+const int hallPin = A0; // Pin analog terhubung ke sensor Hall
+float hallValue = 0;     // Variabel untuk menyimpan nilai sensor
+
+void setup() {
+  // Inisialisasi komunikasi serial
+  Serial.begin(9600);
+}
+
+void loop() {
+  // Membaca nilai dari sensor Hall
+  hallValue = analogRead(hallPin); // Baca output analog
+
+  // Konversi nilai analog ke tegangan (0-5V)
+  float voltage = hallValue * (5.0 / 1023.0);
+
+  // Tampilkan nilai analog dan tegangan di Serial Monitor
+  Serial.print("Analog Value: ");
+  Serial.print(hallValue);
+  Serial.print("\tVoltage: ");
+  Serial.print(voltage);
+  Serial.println(" V");
+
+  // Penundaan 500 ms sebelum pembacaan berikutnya
+  delay(500);
+}
