@@ -1,0 +1,24 @@
+int flameSensorPin = A0;  // Pin analog yang terhubung ke output analog flame sensor
+int flameValue = 0;       // Variabel untuk menyimpan nilai analog
+int threshold = 500;      // Threshold bisa disesuaikan berdasarkan hasil percobaan
+
+void setup() {
+  Serial.begin(9600);     // Memulai komunikasi serial
+}
+
+void loop() {
+  flameValue = analogRead(flameSensorPin); // Baca nilai analog dari flame sensor
+
+  // Tampilkan nilai yang terbaca
+  Serial.print("Flame Intensity: ");
+  Serial.println(flameValue);
+
+  // Membalik logika: jika nilai lebih kecil dari threshold, berarti api terdeteksi
+  if (flameValue < threshold) {
+    Serial.println("Flame detected!");
+  } else {
+    Serial.println("No flame detected.");
+  }
+
+  delay(1000); // Tunggu 1 detik sebelum pembacaan berikutnya
+}
