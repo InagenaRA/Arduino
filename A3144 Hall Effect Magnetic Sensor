@@ -1,0 +1,37 @@
+// Pin untuk sensor Hall magnetik
+const int analogPin = A0;   // Pin analog terhubung ke sensor Hall (analog)
+const int digitalPin = 2;   // Pin digital terhubung ke sensor Hall (digital)
+
+// Variabel untuk menyimpan nilai sensor
+int analogValue = 0;
+int digitalValue = 0;
+
+void setup() {
+  // Inisialisasi komunikasi serial
+  Serial.begin(9600);
+
+  // Atur pin digital sebagai input
+  pinMode(digitalPin, INPUT);
+}
+
+void loop() {
+  // Membaca nilai dari sensor Hall magnetik
+  analogValue = analogRead(analogPin); // Baca output analog
+  digitalValue = digitalRead(digitalPin); // Baca output digital
+
+  // Tampilkan nilai analog dan digital di Serial Monitor
+  Serial.print("Analog Value: ");
+  Serial.print(analogValue);
+  Serial.print("\tDigital Value: ");
+  Serial.println(digitalValue);
+
+  // Mengecek jika sensor mendeteksi medan magnet (digitalValue HIGH)
+  if (digitalValue == HIGH) {
+    Serial.println("Magnetic field detected!");
+  } else {
+    Serial.println("No magnetic field detected.");
+  }
+
+  // Penundaan 500 ms sebelum pembacaan berikutnya
+  delay(1000);
+}
