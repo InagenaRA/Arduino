@@ -1,0 +1,36 @@
+// Definisikan pin untuk sensor dan LED
+const int sensorPin = 8;  // Pin digital untuk sensor tilt (S terhubung ke pin 8)
+const int ledPin = 13;    // Pin untuk LED bawaan Arduino
+
+// Variabel untuk menyimpan status sensor
+int sensorState = 0;
+
+void setup() {
+  // Mengatur pin sensor sebagai input
+  pinMode(sensorPin, INPUT);
+  // Mengatur pin LED sebagai output
+  pinMode(ledPin, OUTPUT);
+  // Memulai komunikasi serial untuk debugging
+  Serial.begin(9600);
+}
+
+void loop() {
+  // Membaca status dari sensor tilt
+  sensorState = digitalRead(sensorPin);
+
+  // Cek apakah sensor mendeteksi kemiringan
+  if (sensorState == HIGH) {
+    // Jika terdeteksi kemiringan, nyalakan LED
+    digitalWrite(ledPin, HIGH);
+    // Tampilkan pesan di Serial Monitor
+    Serial.println("Tilt detected!");
+  } else {
+    // Jika tidak terdeteksi kemiringan, matikan LED
+    digitalWrite(ledPin, LOW);
+    // Tampilkan pesan di Serial Monitor
+    Serial.println("No tilt detected.");
+  }
+
+  // Tunggu sejenak sebelum pembacaan berikutnya
+  delay(500);
+}
