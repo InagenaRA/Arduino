@@ -1,0 +1,20 @@
+// Pin output sensor heartbeat terhubung ke pin analog A0
+int sensorPin = A0;
+int sensorValue = 0;
+
+void setup() {
+  // Memulai komunikasi serial
+  Serial.begin(9600);
+}
+
+void loop() {
+  // Membaca nilai dari sensor heartbeat (nilai analog)
+  sensorValue = analogRead(sensorPin);
+
+  // Menampilkan hasil ke Serial Monitor
+  Serial.print("Heartbeat Sensor Value: ");
+  Serial.println(sensorValue);
+
+  // Menunggu 10 milidetik sebelum pembacaan berikutnya
+  delay(1000);
+}
