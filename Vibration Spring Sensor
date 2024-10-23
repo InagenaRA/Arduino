@@ -1,0 +1,15 @@
+int sensorPin = A0;  // Pin analog yang terhubung ke sensor getaran
+int sensorValue = 0; // Variable untuk menyimpan pembacaan sensor
+
+void setup() {
+  Serial.begin(9600); // Mulai komunikasi serial
+}
+
+void loop() {
+  sensorValue = analogRead(sensorPin); // Baca nilai analog dari sensor
+  
+  Serial.print("Vibration Intensity: ");
+  Serial.println(sensorValue); // Cetak nilai ke serial monitor
+
+  delay(500); // Tunggu 100 ms sebelum pembacaan ulang
+}
