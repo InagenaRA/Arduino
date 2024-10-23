@@ -1,0 +1,35 @@
+#include <OneWire.h>
+#include <DallasTemperature.h>
+
+// Pin data sensor RW1820 terhubung ke pin 2 pada Arduino
+#define ONE_WIRE_BUS 2
+
+// Setup OneWire untuk komunikasi 1-Wire
+OneWire oneWire(ONE_WIRE_BUS);
+
+// Setup DallasTemperature library
+DallasTemperature sensors(&oneWire);
+
+void setup(void) {
+  // Memulai komunikasi serial
+  Serial.begin(9600);
+
+  // Memulai sensor suhu
+  sensors.begin();
+}
+
+void loop(void) {
+  // Meminta sensor untuk memulai pengukuran suhu
+  sensors.requestTemperatures();
+
+  // Baca suhu dalam Celcius
+  float temperatureC = sensors.getTempCByIndex(0);
+
+  // Tampilkan hasil ke Serial Monitor
+  Serial.print("Temperature: ");
+  Serial.print(temperatureC);
+  Serial.println(" °C");
+
+  // Tunggu 1 detik sebelum pembacaan berikutnya
+  delay(1000);
+}
