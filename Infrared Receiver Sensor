@@ -1,0 +1,26 @@
+#include <IRremote.h>
+
+// Definisikan pin untuk IR receiver
+const int RECV_PIN = 11;  // Pin digital yang terhubung ke pin OUT IR receiver
+
+// Buat objek IR receiver
+IRrecv irrecv(RECV_PIN);
+decode_results results;
+
+void setup() {
+  // Memulai komunikasi serial
+  Serial.begin(9600);
+  // Memulai IR receiver
+  irrecv.enableIRIn();
+}
+
+void loop() {
+  // Cek apakah ada sinyal yang diterima
+  if (irrecv.decode(&results)) {
+    // Tampilkan kode yang diterima di Serial Monitor
+    Serial.print("IR Code: ");
+    Serial.println(results.value, HEX);  // Menampilkan dalam format heksadesimal
+    // Teruskan untuk menerima sinyal berikutnya
+    irrecv.resume();
+  }
+}
