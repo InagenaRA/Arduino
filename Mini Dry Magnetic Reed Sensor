@@ -1,0 +1,22 @@
+int reedPin = 2;   // Pin sinyal dari sensor ke pin 2
+int ledPin = 13;   // LED bawaan Arduino untuk indikator
+
+void setup() {
+  pinMode(reedPin, INPUT);    // Reed sensor sebagai input
+  pinMode(ledPin, OUTPUT);    // LED sebagai output
+  Serial.begin(9600);         // Memulai komunikasi serial
+}
+
+void loop() {
+  int reedState = digitalRead(reedPin); // Baca status sensor
+
+  if (reedState == HIGH) {
+    Serial.println("Magnet terdeteksi");
+    digitalWrite(ledPin, HIGH); // Nyalakan LED jika magnet terdeteksi
+  } else {
+    Serial.println("Tidak ada magnet");
+    digitalWrite(ledPin, LOW);  // Matikan LED jika magnet tidak ada
+  }
+  
+  delay(500); // Tunda 500 ms
+}
