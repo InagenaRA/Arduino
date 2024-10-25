@@ -1,0 +1,12 @@
+const int laserPin = 9; // Pin digital untuk mengontrol laser (jika menggunakan transistor)
+
+void setup() {
+  pinMode(laserPin, OUTPUT); // Mengatur pin sebagai output
+}
+
+void loop() {
+  digitalWrite(laserPin, HIGH); // Menyalakan laser
+  delay(1000);                  // Menunggu selama 1 detik
+  digitalWrite(laserPin, LOW);  // Mematikan laser
+  delay(1000);                  // Menunggu selama 1 detik
+}
