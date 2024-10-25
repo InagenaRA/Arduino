@@ -1,0 +1,35 @@
+const int VRx = A0;    // Pin analog X
+const int VRy = A1;    // Pin analog Y
+const int SW = 2;      // Pin digital untuk tombol tekan
+
+int xValue = 0;        // Variabel untuk menyimpan nilai sumbu X
+int yValue = 0;        // Variabel untuk menyimpan nilai sumbu Y
+int swState = 0;       // Variabel untuk menyimpan status tombol
+
+void setup() {
+  Serial.begin(9600);           // Memulai komunikasi serial
+  pinMode(SW, INPUT_PULLUP);     // Mengatur pin tombol sebagai input dengan internal pull-up
+}
+
+void loop() {
+  // Membaca posisi sumbu X dan Y
+  xValue = analogRead(VRx);
+  yValue = analogRead(VRy);
+
+  // Membaca status tombol (0 jika ditekan, 1 jika tidak ditekan)
+  swState = digitalRead(SW);
+
+  // Menampilkan hasil di Serial Monitor
+  Serial.print("Posisi X: ");
+  Serial.print(xValue);
+  Serial.print("\tPosisi Y: ");
+  Serial.print(yValue);
+  Serial.print("\tTombol: ");
+  if (swState == LOW) {
+    Serial.println("Ditekan");
+  } else {
+    Serial.println("Tidak Ditekan");
+  }
+
+  delay(500);  // Menunda sedikit untuk stabilitas pembacaan
+}
