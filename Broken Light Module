@@ -1,0 +1,22 @@
+int sensorPin = 2;     // Pin sensor ke pin 2 pada Arduino
+int ledPin = 13;       // LED untuk indikator (LED internal)
+
+void setup() {
+  pinMode(sensorPin, INPUT);  // Pin sensor sebagai input
+  pinMode(ledPin, OUTPUT);    // LED sebagai output
+  Serial.begin(9600);         // Mulai komunikasi serial
+}
+
+void loop() {
+  int sensorState = digitalRead(sensorPin); // Baca status sensor
+
+  if (sensorState == LOW) {   // Jika cahaya terhalang
+    Serial.println("Cahaya terhalang");
+    digitalWrite(ledPin, HIGH); // Nyalakan LED
+  } else {
+    Serial.println("Cahaya tidak terhalang");
+    digitalWrite(ledPin, LOW);  // Matikan LED
+  }
+  
+  delay(500); // Tunda 500 ms
+}
