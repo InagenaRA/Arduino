@@ -1,0 +1,49 @@
+#define CLK 2   // Pin CLK dari rotary encoder ke pin digital 2 Arduino
+#define DT 3    // Pin DT dari rotary encoder ke pin digital 3 Arduino
+#define SW 4    // Pin SW (Switch) dari rotary encoder ke pin digital 4 Arduino
+
+int counter = 0;       // Variabel untuk menyimpan nilai putaran
+int currentStateCLK;
+int lastStateCLK;
+String direction = "";
+
+void setup() {
+  pinMode(CLK, INPUT); // Mengatur pin CLK sebagai input
+  pinMode(DT, INPUT);  // Mengatur pin DT sebagai input
+  pinMode(SW, INPUT_PULLUP); // Mengatur pin SW sebagai input dengan internal pull-up resistor
+  Serial.begin(9600);  // Memulai komunikasi serial
+  
+  lastStateCLK = digitalRead(CLK); // Menyimpan status awal dari pin CLK
+}
+
+void loop() {
+  // Membaca status terkini dari pin CLK
+  currentStateCLK = digitalRead(CLK);
+
+  // Jika terjadi perubahan pada pin CLK
+  if (currentStateCLK != lastStateCLK) {
+    // Jika pin DT tidak sama dengan status CLK, rotasi searah jarum jam
+    if (digitalRead(DT) != currentStateCLK) {
+      counter++;
+      direction = "Searah Jarum Jam";
+    } else {
+      // Jika sama, rotasi berlawanan arah jarum jam
+      counter--;
+      direction = "Berlawanan Jarum Jam";
+    }
+
+    Serial.print("Arah: ");
+    Serial.print(direction);
+    Serial.print(" | Nilai Putaran: ");
+    Serial.println(counter);
+  }
+
+  // Menyimpan status CLK terakhir untuk perbandingan pada putaran selanjutnya
+  lastStateCLK = currentStateCLK;
+
+  // Membaca status tombol tekan
+  if (digitalRead(SW) == LOW) {
+    Serial.println("Tombol Ditekan!");
+    delay(500); // Debounce tombol
+  }
+}
