@@ -1,0 +1,55 @@
+// Definisi pin untuk setiap warna LED
+const int redPin = 9;
+const int greenPin = 10;
+const int bluePin = 11;
+
+void setup() {
+  // Mengatur pin sebagai output
+  pinMode(redPin, OUTPUT);
+  pinMode(greenPin, OUTPUT);
+  pinMode(bluePin, OUTPUT);
+}
+
+void loop() {
+  // Menyala warna merah
+  analogWrite(redPin, 255);   // Merah penuh
+  analogWrite(greenPin, 0);   // Hijau mati
+  analogWrite(bluePin, 0);    // Biru mati
+  delay(1000);
+
+  // Menyala warna hijau
+  analogWrite(redPin, 0);
+  analogWrite(greenPin, 255); // Hijau penuh
+  analogWrite(bluePin, 0);
+  delay(1000);
+
+  // Menyala warna biru
+  analogWrite(redPin, 0);
+  analogWrite(greenPin, 0);
+  analogWrite(bluePin, 255);  // Biru penuh
+  delay(1000);
+
+  // Menyala warna ungu (campuran merah dan biru)
+  analogWrite(redPin, 255);
+  analogWrite(greenPin, 0);
+  analogWrite(bluePin, 255);
+  delay(1000);
+
+  // Menyala warna kuning (campuran merah dan hijau)
+  analogWrite(redPin, 255);
+  analogWrite(greenPin, 255);
+  analogWrite(bluePin, 0);
+  delay(1000);
+
+  // Menyala warna cyan (campuran hijau dan biru)
+  analogWrite(redPin, 0);
+  analogWrite(greenPin, 255);
+  analogWrite(bluePin, 255);
+  delay(1000);
+
+  // Menyala warna putih (campuran semua warna)
+  analogWrite(redPin, 255);
+  analogWrite(greenPin, 255);
+  analogWrite(bluePin, 255);
+  delay(1000);
+}
