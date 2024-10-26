@@ -1,0 +1,31 @@
+// Definisikan pin untuk LED Merah dan Hijau
+const int redPin = 9;   // Pin untuk LED Merah
+const int greenPin = 10; // Pin untuk LED Hijau
+
+void setup() {
+  // Atur pin LED sebagai output
+  pinMode(redPin, OUTPUT);
+  pinMode(greenPin, OUTPUT);
+}
+
+void loop() {
+  // Nyalakan LED Merah
+  digitalWrite(redPin, HIGH);
+  digitalWrite(greenPin, LOW); // Matikan hijau
+  delay(1000); // Tunggu 1 detik
+
+  // Nyalakan LED Hijau
+  digitalWrite(redPin, LOW); // Matikan merah
+  digitalWrite(greenPin, HIGH);
+  delay(1000); // Tunggu 1 detik
+
+  // Nyalakan kedua LED (Merah + Hijau = Kuning)
+  digitalWrite(redPin, HIGH);
+  digitalWrite(greenPin, HIGH);
+  delay(1000); // Tunggu 1 detik
+
+  // Matikan kedua LED
+  digitalWrite(redPin, LOW);
+  digitalWrite(greenPin, LOW);
+  delay(1000); // Tunggu 1 detik
+}
