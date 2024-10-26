@@ -1,0 +1,17 @@
+int buzzerPin = 9; // Pin yang terhubung ke pin sinyal buzzer
+
+void setup() {
+  pinMode(buzzerPin, OUTPUT); // Mengatur buzzerPin sebagai output
+}
+
+void loop() {
+  // Memainkan nada dari rendah ke tinggi
+  for (int freq = 200; freq <= 2000; freq += 20) { // Frekuensi mulai dari 200 Hz hingga 2000 Hz
+    tone(buzzerPin, freq); // Memainkan nada dengan frekuensi yang ditentukan
+    delay(50); // Jeda 50 ms antara nada
+  }
+  
+  // Menghentikan nada
+  noTone(buzzerPin);
+  delay(1000); // Jeda 1 detik sebelum memulai lagi
+}
