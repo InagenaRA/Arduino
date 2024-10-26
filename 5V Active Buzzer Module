@@ -1,0 +1,17 @@
+// Mendefinisikan pin buzzer
+const int buzzerPin = 8;
+
+void setup() {
+  // Mengatur pin buzzer sebagai output
+  pinMode(buzzerPin, OUTPUT);
+}
+
+void loop() {
+  // Menyalakan buzzer
+  digitalWrite(buzzerPin, HIGH);
+  delay(500); // Bunyi selama 500 ms (0.5 detik)
+
+  // Mematikan buzzer
+  digitalWrite(buzzerPin, LOW);
+  delay(500); // Diam selama 500 ms (0.5 detik)
+}
