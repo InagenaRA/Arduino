@@ -1,0 +1,17 @@
+const int relayPin = 7; // Relay control pin
+
+void setup() {
+  pinMode(relayPin, OUTPUT); // Set relay pin as an output
+  Serial.begin(9600);        // Start serial communication for debugging
+}
+
+void loop() {
+  Serial.println("Relay ON");
+  digitalWrite(relayPin, LOW); // Activate relay (may be LOW for some modules)
+  delay(1000); // Wait for 1 second
+  
+  Serial.println("Relay OFF");
+  digitalWrite(relayPin, HIGH); // Deactivate relay
+  delay(1000); // Wait for 1 second
+}
+
