@@ -1,24 +1,24 @@
-const int sensorPin = 2;  // Pin digital untuk sensor KY-032
-const int ledPin = 13;    // Pin untuk LED bawaan (untuk indikasi)
+int sensorPin = 2; // Pin OUT sensor dihubungkan ke pin D2
+int ledPin = 13;   // LED bawaan Arduino untuk indikasi
 
 void setup() {
-  pinMode(sensorPin, INPUT);   // Setel pin sensor sebagai input
-  pinMode(ledPin, OUTPUT);     // Setel pin LED sebagai output
-  Serial.begin(9600);          // Mulai komunikasi serial
+  pinMode(sensorPin, INPUT);
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600); // Untuk debugging
 }
 
 void loop() {
-  int sensorValue = digitalRead(sensorPin);  // Baca nilai dari sensor
-
-  if (sensorValue == HIGH) {
-    // Jika objek terdeteksi
-    Serial.println("Obstacle detected!");
-    digitalWrite(ledPin, HIGH);  // Nyalakan LED
+  int sensorValue = digitalRead(sensorPin);
+  
+  if (sensorValue == LOW) { 
+    // Objek terdeteksi
+    digitalWrite(ledPin, HIGH);
+    Serial.println("Objek terdeteksi!");
   } else {
-    // Jika tidak ada objek
-    Serial.println("No obstacle.");
-    digitalWrite(ledPin, LOW);   // Matikan LED
+    // Tidak ada objek
+    digitalWrite(ledPin, LOW);
+    Serial.println("Tidak ada objek.");
   }
-
-  delay(100);  // Tunda sebentar sebelum pembacaan berikutnya
+  
+  delay(100); // Delay untuk stabilitas
 }
