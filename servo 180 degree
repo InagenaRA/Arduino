@@ -1,0 +1,19 @@
+#include <Servo.h>
+
+Servo myServo; // Membuat objek servo
+
+void setup() {
+  myServo.attach(9); // Sambungkan servo ke pin 9
+}
+
+void loop() {
+  myServo.write(0);  // Servo bergerak ke 0°
+  delay(1000);       // Tunggu 1 detik
+
+  myServo.write(90); // Servo bergerak ke 90°
+  delay(1000);       // Tunggu 1 detik
+
+  myServo.write(180); // Servo bergerak ke 180°
+  delay(1000);        // Tunggu 1 detik
+
+}
