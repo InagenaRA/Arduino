@@ -1,22 +1,45 @@
 #include <Wire.h>
 #include <MPU6050_light.h>
 
+// Membuat objek MPU6050
 MPU6050 mpu(Wire);
 
 void setup() {
+  // Memulai komunikasi serial
   Serial.begin(9600);
+  // Memulai komunikasi I2C
   Wire.begin();
   
-  // Inisialisasi sensor
+  // Inisialisasi sensor MPU6050
   byte status = mpu.begin();
   if (status != 0) {
-    Serial.println("MPU6050 tidak terdeteksi");
-    while (1);
+    Serial.print("MPU6050 tidak terdeteksi. Status kode: ");
+    Serial.println(status);
+    while (1); // Hentikan program jika sensor tidak terdeteksi
   }
+
+  // Memberikan pesan bahwa sensor siap digunakan
   Serial.println("MPU6050 siap");
+
+  // Melakukan kalibrasi sensor
+  Serial.println("Kalibrasi dimulai. Harap letakkan sensor dalam posisi diam.");
+  delay(3000); // Memberikan waktu untuk menyiapkan sensor
+  mpu.calcOffsets(); // Fungsi untuk menghitung offset akselerometer dan gyroscope
+  Serial.println("Kalibrasi selesai.");
+
+  // Menampilkan nilai offset hasil kalibrasi
+  Serial.print("Gyro offsets: ");
+  Serial.print("X: "); Serial.print(mpu.getGyroXoffset());
+  Serial.print(", Y: "); Serial.print(mpu.getGyroYoffset());
+  Serial.print(", Z: "); Serial.println(mpu.getGyroZoffset());
+  Serial.print("Accel offsets: ");
+  Serial.print("X: "); Serial.print(mpu.getAccXoffset());
+  Serial.print(", Y: "); Serial.print(mpu.getAccYoffset());
+  Serial.print(", Z: "); Serial.println(mpu.getAccZoffset());
 }
 
 void loop() {
+  // Memperbarui data sensor
   mpu.update();
 
   // Menampilkan data akselerometer
@@ -24,10 +47,11 @@ void loop() {
   Serial.print(" | Acc Y: "); Serial.print(mpu.getAccY());
   Serial.print(" | Acc Z: "); Serial.println(mpu.getAccZ());
 
-  // Menampilkan sudut rotasi
+  // Menampilkan data sudut rotasi
   Serial.print("Angle X: "); Serial.print(mpu.getAngleX());
   Serial.print(" | Angle Y: "); Serial.print(mpu.getAngleY());
   Serial.print(" | Angle Z: "); Serial.println(mpu.getAngleZ());
 
+  // Memberikan jeda untuk pembacaan berikutnya
   delay(500);
 }
